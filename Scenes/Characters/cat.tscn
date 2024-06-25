@@ -114,7 +114,7 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_42ijf"]
-animation = &"purr"
+animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_tn4g5"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_42ijf")
@@ -180,7 +180,6 @@ states/walk/position = Vector2(283.333, 52)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_juro2"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0w8b3"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qn31r"), "walk", "purr", SubResource("AnimationNodeStateMachineTransition_v1ese"), "purr", "walk", SubResource("AnimationNodeStateMachineTransition_7l303"), "idle", "purr", SubResource("AnimationNodeStateMachineTransition_sxood"), "purr", "idle", SubResource("AnimationNodeStateMachineTransition_8tqh1")]
 
 [node name="Cat" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "body_area", "sprite")]
-position = Vector2(1, -8)
 script = ExtResource("1_1tmil")
 animation_tree = NodePath("AnimationTree")
 body_area = NodePath("Area2D")
@@ -190,7 +189,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 5
+frame = 67
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -213,7 +212,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/is_purring = false
 parameters/conditions/is_walking = false
-parameters/idle/blend_position = Vector2(0, 0)
+parameters/idle/blend_position = Vector2(-0.00128043, -0.0142857)
 parameters/purr/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(-0.992318, 0.00714278)
 
@@ -221,3 +220,7 @@ parameters/walk/blend_position = Vector2(-0.992318, 0.00714278)
 
 [node name="Purr" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("2_fnyy5")
+volume_db = 24.0
+bus = &"SFX"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

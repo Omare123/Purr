@@ -15,6 +15,7 @@ const DOWN = "down"
 const INVENCIBILITY_TIME = 1
 
 enum {
+	IDLE,
 	WALK,
 	PURR,
 }
@@ -28,9 +29,15 @@ func _ready():
 	
 func _physics_process(delta):
 	input_direction = Input.get_vector(LEFT, RIGHT, UP, DOWN)
-	if input_direction != Vector2.ZERO:
+	if input_direction == Vector2.ZERO:
+		state = IDLE
+	elif state != PURR:
 		state = WALK
+	if Input.is_action_just_pressed("purr"):
+		state = PURR
 	match state:
+		IDLE: 
+			pass
 		WALK:
 			move_state(delta)
 		PURR:
@@ -44,9 +51,6 @@ func move_state(delta):
 	else:
 		set_animation_conditions("parameters/conditions/is_walking")
 		update_blend_directions()
-			
-	if Input.is_action_just_pressed("purr"):
-		state = PURR
 		
 	velocity = input_direction * SPEED
 	move_and_slide()
@@ -63,3 +67,8 @@ func update_blend_directions():
 
 func purr_state():
 	set_animation_conditions("parameters/conditions/is_purring")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == 'purr':
+		state = WALK
