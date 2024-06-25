@@ -31,8 +31,9 @@ func _physics_process(delta):
 	input_direction = Input.get_vector(LEFT, RIGHT, UP, DOWN)
 	if input_direction == Vector2.ZERO:
 		state = IDLE
-	elif state != PURR:
+	elif input_direction != Vector2.ZERO and state != PURR:
 		state = WALK
+		
 	if Input.is_action_just_pressed("purr"):
 		state = PURR
 	match state:
@@ -67,8 +68,10 @@ func update_blend_directions():
 
 func purr_state():
 	set_animation_conditions("parameters/conditions/is_purring")
+	for bodie in body_area.get_overlapping_bodies():
+		if bodie is NPC and !bodie.getting_in_love and !bodie.in_love:
+			bodie.get_in_love()
 
-
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == 'purr':
 		state = WALK
