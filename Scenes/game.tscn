@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://l04dny01p37f"]
+[gd_scene load_steps=6 format=3 uid="uid://l04dny01p37f"]
 
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_7d40x"]
 [ext_resource type="Texture2D" uid="uid://dpg8lw6g6o16y" path="res://Assets/Tiles/TinyFarm_Tiles.png" id="1_bvbh4"]
 [ext_resource type="PackedScene" uid="uid://dmmfvrd3080sr" path="res://Scenes/Characters/cat.tscn" id="2_ekadu"]
-[ext_resource type="PackedScene" uid="uid://wyxpsqdnbs67" path="res://Scenes/Characters/npc.tscn" id="3_kv1aq"]
-[ext_resource type="Resource" uid="uid://cvivmy82yqbf6" path="res://Resources/old_woman.tres" id="4_cbrkt"]
-[ext_resource type="Resource" uid="uid://dpt1rvk0xclkc" path="res://Resources/nobel_man.tres" id="4_nwi87"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blny4"]
 texture = ExtResource("1_bvbh4")
@@ -75,6 +73,7 @@ tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_blny4")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_7d40x")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_b24bm")
@@ -94,13 +93,3 @@ remote_path = NodePath("../../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(460, 236)
 zoom = Vector2(3, 3)
-
-[node name="NPC2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_kv1aq")]
-position = Vector2(563, 205)
-npc_resource = ExtResource("4_cbrkt")
-player = NodePath("../Cat")
-
-[node name="NPC" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_kv1aq")]
-position = Vector2(344, 242)
-npc_resource = ExtResource("4_nwi87")
-player = NodePath("../Cat")
