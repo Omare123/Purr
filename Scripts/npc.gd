@@ -22,7 +22,6 @@ func _ready():
 	sprite_2d.texture = npc_resource.texture
 
 func _physics_process(delta):
-	direction = position.direction_to(player.position).normalized()
 	match state:
 		IDLE: 
 			idle_state()
@@ -44,17 +43,17 @@ func idle_state():
 		set_animation_conditions("parameters/conditions/idle")
 	
 func move_state(delta):
+	
 	if getting_in_love:
 		return
-		
+	direction = position.direction_to(player.position).normalized()
+	velocity = direction * SPEED
 	if direction == Vector2.ZERO:
 		state = IDLE
 	else:
 		velocity = direction * SPEED
-		set_animation_conditions("parameters/conditions/is_walking")
 		update_blend_directions()
-		
-	velocity = direction * SPEED
+		set_animation_conditions("parameters/conditions/is_walking")
 	move_and_slide()
 func love_state():
 	getting_in_love = true
@@ -68,7 +67,8 @@ func set_animation_conditions(condition):
 
 func update_blend_directions():
 	#animation_tree["parameters/idle/blend_position"] = input_direction
-	animation_tree["parameters/walk/blend_position"] = direction
+	
+	animation_tree["parameters/walk/blend_position"] = direction.x
 
 func get_in_love():
 	state = LOVE
@@ -79,10 +79,11 @@ func _on_animation_tree_animation_finished(anim_name):
 		in_love = true
 		stop_bubble()
 		bubble = bubble_cat
-		state = IDLE
+		state = WALK
 
-func emmit_bubble():
+func emit_bubble():
 	bubble.emitting = true
+	bubble.scale.x *= -1 
 
 func stop_bubble():
 	bubble.emitting = false

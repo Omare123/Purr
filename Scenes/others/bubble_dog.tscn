@@ -4,7 +4,8 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xxpf"]
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(-5, -10, 0)
+emission_shape_offset = Vector3(-15, -10, 0)
+emission_shape_scale = Vector3(5, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(5, 1, 1)
 gravity = Vector3(0, 0, 0)
@@ -13,3 +14,6 @@ gravity = Vector3(0, 0, 0)
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_2xxpf")
 texture = ExtResource("1_xv1da")
+lifetime = 2.0
+randomness = 1.0
+interp_to_end = 1.0

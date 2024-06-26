@@ -28,6 +28,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_bubble"
+}, {
+"args": [],
+"method": &"stop_bubble"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_e464n"]
 resource_name = "in_love"
@@ -84,7 +101,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"emmit_bubble"
+"method": &"emit_bubble"
 }, {
 "args": [],
 "method": &"stop_bubble"
@@ -118,7 +135,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"emmit_bubble"
+"method": &"emit_bubble"
 }, {
 "args": [],
 "method": &"stop_bubble"
@@ -140,17 +157,17 @@ animation = &"idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8g72v"]
 animation = &"in_love"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptgbn"]
-animation = &"walk_left"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7prwh"]
 animation = &"walk_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fdnam"]
+animation = &"walk_left"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bq412"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_ptgbn")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_7prwh")
-blend_point_1/pos = 1.0
+blend_point_0/node = SubResource("AnimationNodeAnimation_7prwh")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_fdnam")
+blend_point_1/pos = -1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wt0wl"]
@@ -201,6 +218,7 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -217,9 +235,11 @@ parameters/walk/blend_position = 0
 
 [node name="BubbleCat" parent="." instance=ExtResource("2_i11qd")]
 emitting = false
+local_coords = true
 
 [node name="BubbleDog" parent="." instance=ExtResource("3_nmw8r")]
 emitting = false
+local_coords = true
 
 [node name="Hearts" parent="." instance=ExtResource("4_2k1ok")]
 
