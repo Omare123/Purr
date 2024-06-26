@@ -1,6 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://wyxpsqdnbs67"]
+[gd_scene load_steps=25 format=3 uid="uid://wyxpsqdnbs67"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_rxd6x"]
+[ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
+[ext_resource type="PackedScene" uid="uid://b38w5ppj42an5" path="res://Scenes/others/bubble_dog.tscn" id="3_nmw8r"]
+[ext_resource type="PackedScene" uid="uid://duofg2uxo42yr" path="res://Scenes/others/hearts.tscn" id="4_2k1ok"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xt73"]
 radius = 8.06226
@@ -41,6 +44,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hearts:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jryb0"]
 resource_name = "walk_left"
@@ -57,6 +72,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [36, 37, 38, 39, 40, 41]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emmit_bubble"
+}, {
+"args": [],
+"method": &"stop_bubble"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_op5tq"]
@@ -75,6 +107,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emmit_bubble"
+}, {
+"args": [],
+"method": &"stop_bubble"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q1hn"]
 _data = {
@@ -88,66 +137,62 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83nj1"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qkbjg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8g72v"]
 animation = &"in_love"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hk071"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_qkbjg")
-blend_point_0/pos = Vector2(0, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5vlal"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptgbn"]
 animation = &"walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4ef4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7prwh"]
 animation = &"walk_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qlu72"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_5vlal")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_g4ef4")
-blend_point_1/pos = Vector2(1, 0)
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bq412"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ptgbn")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_7prwh")
+blend_point_1/pos = 1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wt0wl"]
 advance_mode = 2
-advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qpiy2"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qo6u4"]
 advance_mode = 2
 advance_condition = &"is_walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5bvfq"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lggfb"]
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jhlwf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bf87l"]
 advance_mode = 2
 advance_condition = &"in_love"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1727t"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dlixj"]
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7itl"]
-advance_mode = 2
-advance_condition = &"in_love"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_61la7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5x31d"]
 advance_mode = 2
 advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhg80"]
+advance_mode = 2
+advance_condition = &"in_love"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ki2vc"]
 states/idle/node = SubResource("AnimationNodeAnimation_83nj1")
-states/idle/position = Vector2(344, 51.3333)
-states/love/node = SubResource("AnimationNodeBlendSpace2D_hk071")
-states/love/position = Vector2(499.333, 97.3333)
-states/walk/node = SubResource("AnimationNodeBlendSpace2D_qlu72")
-states/walk/position = Vector2(352.667, 184)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qpiy2"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_5bvfq"), "idle", "love", SubResource("AnimationNodeStateMachineTransition_jhlwf"), "love", "idle", SubResource("AnimationNodeStateMachineTransition_1727t"), "walk", "love", SubResource("AnimationNodeStateMachineTransition_s7itl"), "love", "walk", SubResource("AnimationNodeStateMachineTransition_61la7")]
+states/idle/position = Vector2(344.667, 51.3333)
+states/in_love/node = SubResource("AnimationNodeAnimation_8g72v")
+states/in_love/position = Vector2(490, 83.3333)
+states/walk/node = SubResource("AnimationNodeBlendSpace1D_bq412")
+states/walk/position = Vector2(356.667, 172.667)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "in_love", "idle", SubResource("AnimationNodeStateMachineTransition_dlixj"), "in_love", "walk", SubResource("AnimationNodeStateMachineTransition_5x31d"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80")]
 
-[node name="NPC" type="CharacterBody2D"]
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("bubble", "animation_tree")]
 script = ExtResource("1_rxd6x")
+bubble = NodePath("BubbleDog")
+animation_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 8)
@@ -156,7 +201,6 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -169,8 +213,15 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/in_love = false
 parameters/conditions/is_walking = false
-parameters/love/blend_position = Vector2(-0.00512165, 0.00714278)
-parameters/walk/blend_position = Vector2(0, 0)
+parameters/walk/blend_position = 0
+
+[node name="BubbleCat" parent="." instance=ExtResource("2_i11qd")]
+emitting = false
+
+[node name="BubbleDog" parent="." instance=ExtResource("3_nmw8r")]
+emitting = false
+
+[node name="Hearts" parent="." instance=ExtResource("4_2k1ok")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

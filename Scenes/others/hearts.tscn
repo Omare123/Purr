@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://duofg2uxo42yr"]
+
+[ext_resource type="Texture2D" uid="uid://c4s1x82a6eg62" path="res://Assets/Sprites/heart-particle.png" id="1_opvem"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xxpf"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector3(0, -10, 0)
+
+[node name="Hearts" type="GPUParticles2D"]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_2xxpf")
+texture = ExtResource("1_opvem")

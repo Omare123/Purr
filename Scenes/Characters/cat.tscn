@@ -140,6 +140,8 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_d15rg")
 blend_point_0/pos = Vector2(-1, 0)
 blend_point_1/node = SubResource("AnimationNodeAnimation_61aqd")
 blend_point_1/pos = Vector2(1, 0)
+min_space = Vector2(-1, 0)
+max_space = Vector2(1, 0.01)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_juro2"]
@@ -189,7 +191,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 28
+frame = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)
