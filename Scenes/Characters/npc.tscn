@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://wyxpsqdnbs67"]
+[gd_scene load_steps=37 format=3 uid="uid://wyxpsqdnbs67"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_rxd6x"]
 [ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
 [ext_resource type="PackedScene" uid="uid://b38w5ppj42an5" path="res://Scenes/others/bubble_dog.tscn" id="3_nmw8r"]
 [ext_resource type="PackedScene" uid="uid://duofg2uxo42yr" path="res://Scenes/others/hearts.tscn" id="4_2k1ok"]
+[ext_resource type="AudioStream" path="res://Assets/Music/in_love.mp3" id="5_omaeb"]
+[ext_resource type="AudioStream" uid="uid://bpyuo37plx2q4" path="res://Assets/Music/weehee.mp3" id="6_rothy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xt73"]
 radius = 8.06226
@@ -46,121 +48,29 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_7p0cx"]
-resource_name = "idle"
-length = 0.4
-loop_mode = 1
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/in_love:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleDog:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/wehee:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_e464n"]
-resource_name = "in_love"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hearts:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_jryb0"]
-resource_name = "walk_left"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [36, 37, 38, 39, 40, 41]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleDog:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_op5tq"]
-resource_name = "walk_right"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9, 10, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleDog:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_o367p"]
@@ -221,6 +131,175 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_7p0cx"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleDog:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_e464n"]
+resource_name = "in_love"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hearts:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/in_love:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_jryb0"]
+resource_name = "walk_left"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleDog:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_op5tq"]
+resource_name = "walk_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleDog:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ghflh"]
+resource_name = "pet"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hearts:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/wehee:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q1hn"]
 _data = {
 "RESET": SubResource("Animation_wn3pm"),
@@ -228,6 +307,7 @@ _data = {
 "chase_right": SubResource("Animation_aavhi"),
 "idle": SubResource("Animation_7p0cx"),
 "in_love": SubResource("Animation_e464n"),
+"pet": SubResource("Animation_ghflh"),
 "walk_left": SubResource("Animation_jryb0"),
 "walk_right": SubResource("Animation_op5tq")
 }
@@ -250,6 +330,9 @@ animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8g72v"]
 animation = &"in_love"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wia0a"]
+animation = &"pet"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7prwh"]
 animation = &"walk_right"
@@ -291,6 +374,14 @@ advance_condition = &"is_chasing"
 advance_mode = 2
 advance_condition = &"in_love"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hkhds"]
+advance_mode = 2
+advance_condition = &"pet"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jarsk"]
+advance_mode = 2
+advance_condition = &"is_chasing"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ki2vc"]
 states/chase/node = SubResource("AnimationNodeBlendSpace1D_apiul")
 states/chase/position = Vector2(540, 175.333)
@@ -298,9 +389,11 @@ states/idle/node = SubResource("AnimationNodeAnimation_83nj1")
 states/idle/position = Vector2(344.667, 51.3333)
 states/in_love/node = SubResource("AnimationNodeAnimation_8g72v")
 states/in_love/position = Vector2(490, 83.3333)
+states/pet/node = SubResource("AnimationNodeAnimation_wia0a")
+states/pet/position = Vector2(662.667, 100.741)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_bq412")
 states/walk/position = Vector2(350.667, 184.667)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80"), "in_love", "chase", SubResource("AnimationNodeStateMachineTransition_8bf4e"), "chase", "in_love", SubResource("AnimationNodeStateMachineTransition_34g4e")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80"), "in_love", "chase", SubResource("AnimationNodeStateMachineTransition_8bf4e"), "chase", "in_love", SubResource("AnimationNodeStateMachineTransition_34g4e"), "chase", "pet", SubResource("AnimationNodeStateMachineTransition_hkhds"), "pet", "chase", SubResource("AnimationNodeStateMachineTransition_jarsk")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkccj"]
 radius = 9.0
@@ -316,7 +409,7 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 1
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -330,6 +423,7 @@ parameters/conditions/idle = false
 parameters/conditions/in_love = false
 parameters/conditions/is_chasing = false
 parameters/conditions/is_walking = false
+parameters/conditions/pet = false
 parameters/chase/blend_position = 0
 parameters/walk/blend_position = 0
 
@@ -348,6 +442,16 @@ local_coords = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PettingRange"]
 position = Vector2(-1, 8)
 shape = SubResource("CircleShape2D_fkccj")
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="in_love" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_omaeb")
+bus = &"SFX"
+
+[node name="wehee" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_rothy")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
