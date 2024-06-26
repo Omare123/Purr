@@ -1,9 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://wyxpsqdnbs67"]
+[gd_scene load_steps=37 format=3 uid="uid://wyxpsqdnbs67"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_rxd6x"]
 [ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
 [ext_resource type="PackedScene" uid="uid://b38w5ppj42an5" path="res://Scenes/others/bubble_dog.tscn" id="3_nmw8r"]
 [ext_resource type="PackedScene" uid="uid://duofg2uxo42yr" path="res://Scenes/others/hearts.tscn" id="4_2k1ok"]
+[ext_resource type="AudioStream" path="res://Assets/Music/in_love.mp3" id="5_omaeb"]
+[ext_resource type="AudioStream" uid="uid://bpyuo37plx2q4" path="res://Assets/Music/weehee.mp3" id="6_rothy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xt73"]
 radius = 8.06226
@@ -41,6 +43,30 @@ tracks/2/path = NodePath("Hearts:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX/in_love:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SFX/wehee:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -162,6 +188,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/in_love:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_jryb0"]
 resource_name = "walk_left"
@@ -248,6 +286,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/wehee:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q1hn"]
@@ -359,7 +409,7 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 2
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -392,6 +442,16 @@ local_coords = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PettingRange"]
 position = Vector2(-1, 8)
 shape = SubResource("CircleShape2D_fkccj")
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="in_love" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_omaeb")
+bus = &"SFX"
+
+[node name="wehee" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_rothy")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

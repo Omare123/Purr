@@ -5,6 +5,7 @@ class_name Cat extends CharacterBody2D
 @export var sprite: Sprite2D
 @onready var timer = $Timer
 @onready var body = $CollisionShape2D
+@onready var free = $SFX/Free
 
 const SPEED = 200.0
 
@@ -39,7 +40,7 @@ func _physics_process(delta):
 	input_direction = Input.get_vector(LEFT, RIGHT, UP, DOWN)
 	if state == PET:
 		if Input.is_action_just_pressed(FREE):
-			free_actual_count += 1
+			count_free()
 	
 	if input_direction == Vector2.ZERO and state != LOVE and state != PET:
 		state = IDLE
@@ -92,6 +93,10 @@ func pet_state():
 
 func getting_pet():
 	state = PET
+
+func count_free():
+	free_actual_count += 1
+	free.play()
 
 func disable_body():
 	timer.start(UNTOUCHABLE_TIME)

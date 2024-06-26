@@ -20,6 +20,7 @@ var direction = Vector2.ZERO
 var getting_in_love = false
 var in_love = false
 var state = IDLE
+
 func _ready():
 	sprite_2d.texture = npc_resource.texture
 
