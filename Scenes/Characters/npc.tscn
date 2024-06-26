@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wyxpsqdnbs67"]
+[gd_scene load_steps=30 format=3 uid="uid://wyxpsqdnbs67"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_rxd6x"]
 [ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
@@ -10,6 +10,42 @@ radius = 8.06226
 
 [sub_resource type="Animation" id="Animation_wn3pm"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleCat:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleDog:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hearts:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7p0cx"]
 resource_name = "idle"
@@ -28,22 +64,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("BubbleDog:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"emit_bubble"
-}, {
-"args": [],
-"method": &"stop_bubble"
-}]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_e464n"]
@@ -90,22 +121,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [36, 37, 38, 39, 40, 41]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("BubbleDog:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"emit_bubble"
-}, {
-"args": [],
-"method": &"stop_bubble"
-}]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_op5tq"]
@@ -124,32 +150,100 @@ tracks/0/keys = {
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("BubbleDog:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"emit_bubble"
-}, {
-"args": [],
-"method": &"stop_bubble"
-}]
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_o367p"]
+resource_name = "chase_left"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleCat:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_aavhi"]
+resource_name = "chase_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleCat:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q1hn"]
 _data = {
 "RESET": SubResource("Animation_wn3pm"),
+"chase_left": SubResource("Animation_o367p"),
+"chase_right": SubResource("Animation_aavhi"),
 "idle": SubResource("Animation_7p0cx"),
 "in_love": SubResource("Animation_e464n"),
 "walk_left": SubResource("Animation_jryb0"),
 "walk_right": SubResource("Animation_op5tq")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dlro7"]
+animation = &"chase_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjnou"]
+animation = &"chase_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_apiul"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dlro7")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xjnou")
+blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83nj1"]
 animation = &"idle"
@@ -185,30 +279,31 @@ advance_condition = &"idle"
 advance_mode = 2
 advance_condition = &"in_love"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dlixj"]
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5x31d"]
-advance_mode = 2
-advance_condition = &"is_walking"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhg80"]
 advance_mode = 2
 advance_condition = &"in_love"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8bf4e"]
+advance_mode = 2
+advance_condition = &"is_chasing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34g4e"]
+advance_mode = 2
+advance_condition = &"in_love"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ki2vc"]
+states/chase/node = SubResource("AnimationNodeBlendSpace1D_apiul")
+states/chase/position = Vector2(540, 175.333)
 states/idle/node = SubResource("AnimationNodeAnimation_83nj1")
 states/idle/position = Vector2(344.667, 51.3333)
 states/in_love/node = SubResource("AnimationNodeAnimation_8g72v")
 states/in_love/position = Vector2(490, 83.3333)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_bq412")
-states/walk/position = Vector2(356.667, 172.667)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "in_love", "idle", SubResource("AnimationNodeStateMachineTransition_dlixj"), "in_love", "walk", SubResource("AnimationNodeStateMachineTransition_5x31d"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80")]
+states/walk/position = Vector2(350.667, 184.667)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80"), "in_love", "chase", SubResource("AnimationNodeStateMachineTransition_8bf4e"), "chase", "in_love", SubResource("AnimationNodeStateMachineTransition_34g4e")]
 
-[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("bubble", "animation_tree")]
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_rxd6x")
-bubble = NodePath("BubbleDog")
 animation_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -230,7 +325,9 @@ tree_root = SubResource("AnimationNodeStateMachine_ki2vc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/in_love = false
+parameters/conditions/is_chasing = false
 parameters/conditions/is_walking = false
+parameters/chase/blend_position = 0
 parameters/walk/blend_position = 0
 
 [node name="BubbleCat" parent="." instance=ExtResource("2_i11qd")]

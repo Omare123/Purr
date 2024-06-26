@@ -29,7 +29,7 @@ func _ready():
 	
 func _physics_process(delta):
 	input_direction = Input.get_vector(LEFT, RIGHT, UP, DOWN)
-	if input_direction == Vector2.ZERO:
+	if input_direction == Vector2.ZERO and state != PURR:
 		state = IDLE
 	elif input_direction != Vector2.ZERO and state != PURR:
 		state = WALK
@@ -38,7 +38,7 @@ func _physics_process(delta):
 		state = PURR
 	match state:
 		IDLE: 
-			pass
+			idle_state()
 		WALK:
 			move_state(delta)
 		PURR:
@@ -48,13 +48,19 @@ func _physics_process(delta):
 
 func move_state(delta):
 	if input_direction == Vector2.ZERO:
-		set_animation_conditions("parameters/conditions/idle")
+		state = IDLE
 	else:
 		set_animation_conditions("parameters/conditions/is_walking")
 		update_blend_directions()
 		
 	velocity = input_direction * SPEED
 	move_and_slide()
+
+func idle_state():
+	if input_direction == Vector2.ZERO:
+		set_animation_conditions("parameters/conditions/idle")
+	else:
+		state = WALK
 	
 func set_animation_conditions(condition):
 	animation_tree["parameters/conditions/idle"] = false
@@ -74,4 +80,4 @@ func purr_state():
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == 'purr':
-		state = WALK
+		state = IDLE
