@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://wyxpsqdnbs67"]
+[gd_scene load_steps=31 format=3 uid="uid://wyxpsqdnbs67"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_rxd6x"]
 [ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
@@ -302,6 +302,9 @@ states/walk/node = SubResource("AnimationNodeBlendSpace1D_bq412")
 states/walk/position = Vector2(350.667, 184.667)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wt0wl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_qo6u4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_lggfb"), "idle", "in_love", SubResource("AnimationNodeStateMachineTransition_bf87l"), "walk", "in_love", SubResource("AnimationNodeStateMachineTransition_lhg80"), "in_love", "chase", SubResource("AnimationNodeStateMachineTransition_8bf4e"), "chase", "in_love", SubResource("AnimationNodeStateMachineTransition_34g4e")]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkccj"]
+radius = 9.0
+
 [node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_rxd6x")
 animation_tree = NodePath("AnimationTree")
@@ -313,7 +316,7 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -340,5 +343,12 @@ local_coords = true
 
 [node name="Hearts" parent="." instance=ExtResource("4_2k1ok")]
 
+[node name="PettingRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PettingRange"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_fkccj")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="PettingRange" to="." method="_on_petting_range_body_entered"]

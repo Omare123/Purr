@@ -81,3 +81,6 @@ func purr_state():
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == 'purr':
 		state = IDLE
+
+func getting_pet():
+	state = PURR

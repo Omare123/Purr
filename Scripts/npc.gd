@@ -34,7 +34,6 @@ func _physics_process(delta):
 			chasing_state()
 		_: 
 			pass
-	move_and_slide()
 
 func idle_state():
 	if getting_in_love:
@@ -91,3 +90,9 @@ func _on_animation_tree_animation_finished(anim_name):
 		in_love = true
 		bubble_dog.emitting = false
 		state = CHASE
+
+
+func _on_petting_range_body_entered(body):
+	if body is Cat and state == CHASE:
+		body.getting_pet()
+		state = LOVE
