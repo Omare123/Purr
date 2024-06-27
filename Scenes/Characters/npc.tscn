@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qa8p4wqwp4yq" path="res://Scenes/others/bubble_cat.tscn" id="2_i11qd"]
 [ext_resource type="PackedScene" uid="uid://b38w5ppj42an5" path="res://Scenes/others/bubble_dog.tscn" id="3_nmw8r"]
 [ext_resource type="PackedScene" uid="uid://duofg2uxo42yr" path="res://Scenes/others/hearts.tscn" id="4_2k1ok"]
-[ext_resource type="AudioStream" path="res://Assets/Music/in_love.mp3" id="5_omaeb"]
+[ext_resource type="AudioStream" uid="uid://3l1goy5a8ndc" path="res://Assets/Music/in_love.mp3" id="5_omaeb"]
 [ext_resource type="AudioStream" uid="uid://bpyuo37plx2q4" path="res://Assets/Music/weehee.mp3" id="6_rothy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xt73"]
@@ -201,6 +201,47 @@ tracks/2/keys = {
 "values": [true, true, true]
 }
 
+[sub_resource type="Animation" id="Animation_ghflh"]
+resource_name = "pet"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hearts:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX/wehee:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_jryb0"]
 resource_name = "walk_left"
 length = 0.6
@@ -257,47 +298,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_ghflh"]
-resource_name = "pet"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hearts:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SFX/wehee:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q1hn"]
@@ -409,7 +409,7 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
