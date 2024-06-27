@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Purr"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="res://Scenes/others/background.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom="res://Themes/purr-theme.tres"
 
 [input]
 

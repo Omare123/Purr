@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://bek72170oq8hh"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_7kejs"]
+[ext_resource type="AudioStream" uid="uid://bal58cjw0lyrt" path="res://Assets/Music/Kitty-cat.mp3" id="2_eosfb"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7kejs")
+
+[node name="Logo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.5
+offset_top = 63.0
+offset_right = 143.5
+offset_bottom = 187.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 194
+text = "Purr"
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 297.0
+offset_right = 691.0
+offset_bottom = 519.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Start_Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="Quit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "QUIT"
+
+[node name="Main Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_eosfb")
+autoplay = true
+bus = &"Main Menu"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Start_Button" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Quit_Button" to="." method="_on_quit_button_button_down"]
