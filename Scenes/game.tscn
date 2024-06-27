@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://l04dny01p37f"]
+[gd_scene load_steps=8 format=3 uid="uid://l04dny01p37f"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_7d40x"]
 [ext_resource type="Texture2D" uid="uid://dpg8lw6g6o16y" path="res://Assets/Tiles/TinyFarm_Tiles.png" id="1_bvbh4"]
 [ext_resource type="PackedScene" uid="uid://dmmfvrd3080sr" path="res://Scenes/Characters/cat.tscn" id="2_ekadu"]
+[ext_resource type="Script" path="res://Scenes/TimeLabel.gd" id="4_2y5e2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blny4"]
 texture = ExtResource("1_bvbh4")
@@ -72,6 +73,8 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_blny4")
 
+[sub_resource type="LabelSettings" id="LabelSettings_meopq"]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7d40x")
 
@@ -93,3 +96,15 @@ remote_path = NodePath("../../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(460, 236)
 zoom = Vector2(3, 3)
+
+[node name="Time" type="Label" parent="Camera2D"]
+offset_left = 133.0
+offset_top = -102.0
+offset_right = 218.0
+offset_bottom = -79.0
+scale = Vector2(0.609005, 0.598358)
+text = "00:00"
+label_settings = SubResource("LabelSettings_meopq")
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_2y5e2")
