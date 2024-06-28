@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cakoqu4wik3lk" path="res://Assets/Music/free.mp3" id="4_ct038"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2g6f"]
-radius = 6.0
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chl0r"]
 radius = 4.0
@@ -234,6 +234,8 @@ states/walk/position = Vector2(283.333, 52)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_juro2"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0w8b3"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qn31r"), "walk", "purr", SubResource("AnimationNodeStateMachineTransition_v1ese"), "purr", "walk", SubResource("AnimationNodeStateMachineTransition_7l303"), "idle", "purr", SubResource("AnimationNodeStateMachineTransition_sxood"), "purr", "idle", SubResource("AnimationNodeStateMachineTransition_8tqh1"), "walk", "pet", SubResource("AnimationNodeStateMachineTransition_xw3dj"), "pet", "walk", SubResource("AnimationNodeStateMachineTransition_la0f7"), "idle", "pet", SubResource("AnimationNodeStateMachineTransition_yc8d0"), "pet", "idle", SubResource("AnimationNodeStateMachineTransition_kxol6")]
 
 [node name="Cat" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "purr_range", "sprite")]
+collision_layer = 6
+collision_mask = 5
 script = ExtResource("1_1tmil")
 UNTOUCHABLE_TIME = 2
 animation_tree = NodePath("AnimationTree")
@@ -244,7 +246,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 68
+frame = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)

@@ -59,7 +59,7 @@ func move_state(delta):
 		velocity = direction * SPEED
 		update_blend_directions()
 		set_animation_conditions("parameters/conditions/is_walking")
-	move_and_slide()
+	move_and_collide(direction)
 
 func chasing_state():
 	if getting_in_love:
@@ -102,7 +102,8 @@ func _on_animation_tree_animation_finished(anim_name):
 		bubble_dog.emitting = false
 		state = CHASE
 
-func _on_petting_range_body_entered(body):
-	if body is Cat and state == CHASE:
-		body.getting_pet()
+func _on_petting_range_area_entered(area):
+	var area_body = area.get_parent() 
+	if area_body is Cat and state == CHASE and !area_body.untouchable:
+		area_body.getting_pet()
 		state = PET

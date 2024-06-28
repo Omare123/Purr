@@ -31,6 +31,7 @@ enum {
 var state
 var input_direction = Vector2.ZERO
 var loved_a_person = false
+var untouchable = false
 
 func _ready():
 	input_direction = Vector2(0, 1)
@@ -79,9 +80,10 @@ func idle_state():
 
 func purr_state():
 	set_animation_conditions("parameters/conditions/is_purring")
-	for bodie in purr_range.get_overlapping_bodies():
-		if bodie is NPC and !bodie.getting_in_love and !bodie.in_love:
-			bodie.get_in_love()
+	for area in purr_range.get_overlapping_areas():
+		body = area.get_parent()
+		if body is NPC and !body.getting_in_love and !body.in_love:
+			body.get_in_love()
 			loved_a_person = true
 
 func pet_state():
@@ -98,9 +100,12 @@ func count_free():
 	free_actual_count += 1
 	free.play()
 
-func disable_body():
-	timer.start(UNTOUCHABLE_TIME)
-	body.disabled = true
+func disable_body(value =  false):
+	if !value:
+		timer.start(UNTOUCHABLE_TIME)
+	untouchable = !value
+	set_collision_mask_value(3, value)
+	set_collision_layer_value(3, value)
 
 func set_animation_conditions(condition):
 	animation_tree["parameters/conditions/idle"] = false
@@ -120,4 +125,4 @@ func _on_animation_tree_animation_finished(anim_name):
 			loved_a_person = false
 
 func _on_timer_timeout():
-	body.disabled = false
+	disable_body(true)
