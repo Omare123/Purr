@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cakoqu4wik3lk" path="res://Assets/Music/free.mp3" id="4_ct038"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2g6f"]
-radius = 6.0
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chl0r"]
 radius = 4.0
@@ -244,7 +244,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 6
+frame = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)
