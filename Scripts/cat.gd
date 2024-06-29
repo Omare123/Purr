@@ -6,7 +6,7 @@ class_name Cat extends CharacterBody2D
 @onready var timer = $Timer
 @onready var body = $CollisionShape2D
 @onready var free = $SFX/Free
-
+signal got_person_in_love
 const SPEED = 200.0
 
 #Input actions
@@ -85,6 +85,7 @@ func purr_state():
 		if body is NPC and !body.getting_in_love and !body.in_love:
 			body.get_in_love()
 			loved_a_person = true
+			got_person_in_love.emit()
 
 func pet_state():
 	set_animation_conditions("parameters/conditions/pet")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://l04dny01p37f"]
+[gd_scene load_steps=12 format=3 uid="uid://l04dny01p37f"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_7d40x"]
 [ext_resource type="Texture2D" uid="uid://dpg8lw6g6o16y" path="res://Assets/Tiles/TinyFarm_Tiles.png" id="1_bvbh4"]
@@ -8,11 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bal58cjw0lyrt" path="res://Assets/Music/Kitty-cat.mp3" id="6_nc1q7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jm4gc"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_meopq"]
-font_size = 59
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sajki"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -3105,20 +3100,42 @@ material = SubResource("CanvasItemMaterial_jm4gc")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -151.0
+offset_left = -117.0
 offset_top = 19.0
-offset_right = -1.0
+offset_right = 33.0
 offset_bottom = 79.0
 grow_horizontal = 0
 scale = Vector2(0.609005, 0.598358)
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 56
 text = "00:00"
-label_settings = SubResource("LabelSettings_meopq")
 horizontal_alignment = 2
 vertical_alignment = 1
 uppercase = true
 script = ExtResource("4_2y5e2")
+
+[node name="Cat People Counter" type="Label" parent="CanvasLayer"]
+offset_left = 805.0
+offset_top = 60.0
+offset_right = 902.0
+offset_bottom = 91.0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+
+[node name="Cat Person" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -209.0
+offset_top = 60.0
+offset_right = -23.0
+offset_bottom = 88.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "Cat People"
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, -11)
@@ -3148,6 +3165,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_nc1q7")
 autoplay = true
 bus = &"Main Menu"
+
+[connection signal="got_person_in_love" from="Cat" to="." method="_on_cat_got_person_in_love"]
