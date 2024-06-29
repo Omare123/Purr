@@ -2,9 +2,12 @@ extends Node2D
 const NPC_SCENE = preload("res://Scenes/Characters/npc.tscn")
 const PAUSE_MENU = preload("res://Scenes/others/pause_menu.tscn")
 const GAME_OVER_MENU = preload("res://Scenes/others/game_over_menu.tscn")
+
+@export var npc_to_add = 10
+@export var limit_up_left = Vector2(5,5)
+@export var limit_down_right = Vector2(1690,1125)
 @onready var cat = $Cat
 @onready var tile_map: TileMap = $TileMap
-@export var npc_to_add = 10
 @onready var timer = $CanvasLayer/Time
 @onready var cat_people_counter = $"CanvasLayer/Cat People Counter"
 
@@ -44,8 +47,8 @@ func get_random_position():
 	var final_position = Vector2.ZERO
 	while recalculate:
 		randomize()
-		var x_position = randi_range(5, 2150)
-		var y_position = randi_range(1100, 5)
+		var x_position = randi_range(limit_up_left.x, limit_down_right.x)
+		var y_position = randi_range(limit_down_right.y, limit_up_left.y)
 		final_position = Vector2(x_position, y_position)
 		var posible_position = tile_map.local_to_map(final_position)
 		#this gets if is a obstacle to re-roll
