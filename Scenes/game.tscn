@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://l04dny01p37f"]
+[gd_scene load_steps=11 format=3 uid="uid://l04dny01p37f"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_7d40x"]
 [ext_resource type="Texture2D" uid="uid://dpg8lw6g6o16y" path="res://Assets/Tiles/TinyFarm_Tiles.png" id="1_bvbh4"]
 [ext_resource type="PackedScene" uid="uid://dmmfvrd3080sr" path="res://Scenes/Characters/cat.tscn" id="2_ekadu"]
 [ext_resource type="Texture2D" uid="uid://c6xndc262ax2n" path="res://Assets/Tiles/tilemap_packed.png" id="3_bb7al"]
 [ext_resource type="Script" path="res://Scripts/TimeLabel.gd" id="4_2y5e2"]
-[ext_resource type="AudioStream" uid="uid://bal58cjw0lyrt" path="res://Assets/Music/Kitty-cat.mp3" id="6_nc1q7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jm4gc"]
 
@@ -3125,7 +3124,7 @@ theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 2
 
-[node name="Cat Person" type="Label" parent="CanvasLayer"]
+[node name="People left" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -3135,7 +3134,7 @@ offset_right = -23.0
 offset_bottom = 88.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 30
-text = "Cat People"
+text = "People left"
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, -11)
@@ -3164,12 +3163,6 @@ limit_right = 1700
 limit_bottom = 1140
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("6_nc1q7")
-autoplay = true
-bus = &"Music"
 
 [node name="Game Timer" type="Timer" parent="."]
 wait_time = 180.0

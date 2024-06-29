@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh3xbn57h5rj"]
+
+[ext_resource type="AudioStream" uid="uid://bal58cjw0lyrt" path="res://Assets/Music/Kitty-cat.mp3" id="1_h724r"]
+
+[node name="Main Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_h724r")
+autoplay = true
+bus = &"Music"
