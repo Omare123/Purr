@@ -3149,6 +3149,7 @@ layer_1/tile_data = PackedInt32Array(458754, 0, 8, 524290, 0, 9, 589826, 0, 10, 
 [node name="Cat" parent="." instance=ExtResource("2_ekadu")]
 top_level = true
 position = Vector2(1080, 668)
+UNTOUCHABLE_TIME = 1.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Cat"]
 position = Vector2(-1, 10)
@@ -3170,4 +3171,10 @@ stream = ExtResource("6_nc1q7")
 autoplay = true
 bus = &"Music"
 
+[node name="Game Timer" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+autostart = true
+
 [connection signal="got_person_in_love" from="Cat" to="." method="_on_cat_got_person_in_love"]
+[connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]

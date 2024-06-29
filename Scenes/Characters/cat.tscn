@@ -237,7 +237,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 collision_layer = 6
 collision_mask = 5
 script = ExtResource("1_1tmil")
-UNTOUCHABLE_TIME = 2
+UNTOUCHABLE_TIME = 1.5
 animation_tree = NodePath("AnimationTree")
 purr_range = NodePath("Area2D")
 sprite = NodePath("Sprite2D")
@@ -246,7 +246,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 6
+frame = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)

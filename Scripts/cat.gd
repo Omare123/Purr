@@ -1,5 +1,5 @@
 class_name Cat extends CharacterBody2D
-@export var UNTOUCHABLE_TIME = 1
+@export var UNTOUCHABLE_TIME: float = 1
 @export var animation_tree: AnimationTree
 @export var purr_range: Area2D
 @export var sprite: Sprite2D

@@ -8,18 +8,16 @@ const GAME_OVER_MENU = preload("res://Scenes/others/game_over_menu.tscn")
 @export var limit_down_right = Vector2(1690,1125)
 @onready var cat = $Cat
 @onready var tile_map: TileMap = $TileMap
-@onready var timer = $CanvasLayer/Time
+@onready var visible_timer = $CanvasLayer/Time
 @onready var cat_people_counter = $"CanvasLayer/Cat People Counter"
+@onready var game_timer = $"Game Timer"
 
 const PAUSE = "pause"
 const sprites_path = "res://Assets/Sprites/"
 const NPC_NAMES = "res://Resources/npc_sprite_names.json"
 const npc_max_nbr = 7
-var time: float = 0
-var is_timer_active := false
 var counter = 0
 func _ready():
-	start()
 	var json_as_text = FileAccess.get_file_as_string(NPC_NAMES)
 	var json_as_dict = JSON.parse_string(json_as_text)["data"]
 	for n in npc_to_add:
@@ -57,30 +55,18 @@ func get_random_position():
 			recalculate = false
 		
 	return final_position
-
-func reset():
-	time = 0
-
-func start():
-	is_timer_active = true
-
-func stop():
-	is_timer_active = false
 	
 func game_over():
 	var game_over_screen := GAME_OVER_MENU.instantiate()
 	add_child.call_deferred(game_over_screen)
-	game_over_screen.set_time(timer.text)
 
 func _process(delta):
-	timer.text = get_time(delta)
+	visible_timer.text = get_time()
 	
-func get_time(delta):
-	if(!is_timer_active):
-		pass
-	time += delta
-	var seconds = fmod(time,60)
-	var minutes = fmod(time, 60*60) / 60
+func get_time():
+	var time_left = game_timer.time_left
+	var minutes = floor(time_left/60)
+	var seconds = int(time_left) % 60
 	return "%02d:%02d" % [minutes, seconds]
 
 func _on_cat_got_person_in_love():
@@ -88,3 +74,6 @@ func _on_cat_got_person_in_love():
 	cat_people_counter.text = str(counter)
 	if counter == npc_to_add:
 		game_over()
+
+func _on_game_timer_timeout():
+	get_tree().reload_current_scene()
