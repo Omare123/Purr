@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmmfvrd3080sr"]
+[gd_scene load_steps=35 format=3 uid="uid://dmmfvrd3080sr"]
 
 [ext_resource type="Script" path="res://Scripts/cat.gd" id="1_1tmil"]
 [ext_resource type="Texture2D" uid="uid://bxn5n3os7wrkh" path="res://Assets/Sprites/CatsBlack16x16Tile.png" id="2_0lcp1"]
 [ext_resource type="AudioStream" uid="uid://t82pw8hacf0n" path="res://Assets/Music/cat-is-purring-27823.mp3" id="2_fnyy5"]
 [ext_resource type="AudioStream" uid="uid://cakoqu4wik3lk" path="res://Assets/Music/free.mp3" id="4_ct038"]
+[ext_resource type="PackedScene" uid="uid://do8jhjrrdj2g0" path="res://Scenes/others/press_free_particle.tscn" id="5_adhdf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2g6f"]
 radius = 7.0
@@ -246,7 +247,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 4
+frame = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)
@@ -287,6 +288,11 @@ bus = &"SFX"
 [node name="Free" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_ct038")
 bus = &"SFX"
+
+[node name="F Button" parent="." instance=ExtResource("5_adhdf")]
+z_index = 1
+position = Vector2(10, -10)
+emitting = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

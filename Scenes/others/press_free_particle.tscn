@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8jhjrrdj2g0"]
+
+[ext_resource type="Texture2D" uid="uid://cwm20n5oqb1kl" path="res://Assets/Sprites/F -little.png" id="1_b3koq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hlli0"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -100, 0)
+
+[node name="F Button" type="GPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_hlli0")
+texture = ExtResource("1_b3koq")
+lifetime = 0.2

@@ -6,6 +6,7 @@ class_name Cat extends CharacterBody2D
 @onready var timer = $Timer
 @onready var body = $CollisionShape2D
 @onready var free = $SFX/Free
+@onready var f_button = $"F Button"
 signal got_person_in_love
 const SPEED = 200.0
 
@@ -90,12 +91,14 @@ func purr_state():
 func pet_state():
 	set_animation_conditions("parameters/conditions/pet")
 	if free_actual_count == FREE_TOTAL_COUNTS:
+		f_button.emitting = false
 		free_actual_count = 0
 		state = IDLE
 		disable_body()
 
 func getting_pet():
 	state = PET
+	f_button.emitting = true
 
 func count_free():
 	free_actual_count += 1
