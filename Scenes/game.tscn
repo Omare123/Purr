@@ -3168,6 +3168,6 @@ drag_vertical_enabled = true
 process_mode = 3
 stream = ExtResource("6_nc1q7")
 autoplay = true
-bus = &"Main Menu"
+bus = &"Music"
 
 [connection signal="got_person_in_love" from="Cat" to="." method="_on_cat_got_person_in_love"]

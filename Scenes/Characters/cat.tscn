@@ -246,7 +246,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 7
+frame = 6
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, -9)
