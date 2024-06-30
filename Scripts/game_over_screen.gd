@@ -2,9 +2,9 @@ extends CanvasLayer
 @onready var pause_ui = $Control
 @onready var back = $Back
 @onready var instructions = $Instructions
-
+var pause = true
 func _ready():
-	get_tree().paused = true
+	get_tree().paused = pause
 
 func _on_restart_button_down():
 	get_tree().paused = false
@@ -13,6 +13,7 @@ func _on_restart_button_down():
 
 func _on_quit_button_down():
 	get_tree().quit()
+	
 
 func _on_resume_button_down():
 	get_tree().paused = false

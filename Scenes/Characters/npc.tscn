@@ -388,7 +388,6 @@ shape = SubResource("CircleShape2D_7xt73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 6
 vframes = 10
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -433,12 +432,18 @@ stream = ExtResource("6_rothy")
 bus = &"SFX"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="NavigationTimer" type="Timer" parent="."]
-wait_time = 3.0
+autostart = true
+
+[node name="Stuck Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_entered" from="PettingRange" to="." method="_on_petting_range_area_entered"]
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="timeout" from="Stuck Timer" to="." method="_on_stuck_timer_timeout"]

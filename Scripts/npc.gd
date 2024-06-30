@@ -26,9 +26,11 @@ var direction = Vector2.ZERO
 var getting_in_love = false
 var in_love = false
 var state = IDLE
+var last_checked_position = Vector2.ZERO
 
 func _ready():
 	sprite_2d.texture = npc_resource.texture
+	navigation_timer.wait_time = randf_range(3, 8)
 
 func _physics_process(delta):
 	match state:
@@ -48,15 +50,16 @@ func _physics_process(delta):
 func idle_state():
 	if getting_in_love:
 		return
-
+	
 	set_animation_conditions("parameters/conditions/idle")
 	
 func move_state(delta):
 	if getting_in_love:
 		return
 	direction = to_local(navigation_agent.get_next_path_position()).normalized()
+	navigation_agent.path_max_distance
 	velocity = direction * SPEED
-	if position.distance_to(target_position) < 1:
+	if navigation_agent.is_navigation_finished():
 		state = IDLE
 	else:
 		update_blend_directions()
@@ -81,7 +84,11 @@ func pet_state():
 	if player.state != 3:
 		state = CHASE
 		hearts.emitting = false
-
+		
+func game_over_celebrate():
+	set_animation_conditions("parameters/conditions/pet")
+	navigation_timer.stop()
+	
 func set_animation_conditions(condition):
 	animation_tree["parameters/conditions/idle"] = false
 	animation_tree["parameters/conditions/in_love"] = false
@@ -96,7 +103,9 @@ func update_blend_directions():
 
 func get_in_love():
 	state = LOVE
+	navigation_timer.stop()
 	navigation_timer.wait_time = 0.1
+	navigation_timer.start()
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "in_love":
@@ -143,5 +152,8 @@ func update_target_position():
 		state = WALK
 		target_position = get_random_position()
 
-func _on_wander_timer_timeout():
-	pass
+func _on_stuck_timer_timeout():
+	if position.distance_to(last_checked_position) < 0.5 and state == WALK:
+		state = IDLE
+		update_target_position()
+	last_checked_position = position

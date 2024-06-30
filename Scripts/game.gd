@@ -57,8 +57,13 @@ func get_random_position():
 	return final_position
 	
 func game_over():
+	game_timer.stop()
 	var game_over_screen := GAME_OVER_MENU.instantiate()
-	add_child.call_deferred(game_over_screen)
+	#game_over_screen.pause = false
+	#for child in get_children():
+		#if child is NPC:
+			#child.game_over_celebrate()
+	#add_child.call_deferred(game_over_screen)
 
 func _process(delta):
 	visible_timer.text = get_time()
