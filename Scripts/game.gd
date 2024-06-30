@@ -30,6 +30,7 @@ func _ready():
 		npc.npc_resource = npc_resource
 		npc.player = cat
 		npc.position = npc_position
+		npc.tile_map = tile_map
 		add_child(npc)
 
 func _input(event):

@@ -1,5 +1,8 @@
 extends CharacterBody2D
 class_name NPC
+@export var limit_up_left = Vector2(5,5)
+@export var limit_down_right = Vector2(1690,1125)
+@export var tile_map: TileMap
 @export var npc_resource: NPCResource
 @export var player: CharacterBody2D
 @export var animation_tree: AnimationTree
@@ -56,12 +59,12 @@ func move_state(delta):
 		return
 	direction = to_local(navigation_agent.get_next_path_position()).normalized()
 	velocity = direction * SPEED
-	if direction.length() < 1:
+	if position.distance_to(target_position) < 1:
 		state = IDLE
 	else:
 		update_blend_directions()
 		set_animation_conditions("parameters/conditions/is_walking")
-		move_and_collide(direction)
+		move_and_slide()
 
 func chasing_state():
 	if getting_in_love:
@@ -122,11 +125,26 @@ func _on_navigation_timer_timeout():
 		update_target_position()
 		navigation_agent.target_position = target_position
 
+func get_random_position():
+	var recalculate = true 
+	var final_position = Vector2.ZERO
+	while recalculate:
+		randomize()
+		var x_position = randi_range(limit_up_left.x, limit_down_right.x)
+		var y_position = randi_range(limit_down_right.y, limit_up_left.y)
+		final_position = Vector2(x_position, y_position)
+		var posible_position = tile_map.local_to_map(final_position)
+		#this gets if is a obstacle to re-roll
+		var tile = tile_map.get_cell_tile_data(0, posible_position)
+		if tile == null:
+			recalculate = false
+		
+	return final_position
+
 func update_target_position():
-	var target_vector = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))
 	if state == IDLE:
 		state = WALK
-		target_position = start_position + target_vector
+		target_position = get_random_position()
 
 func _on_wander_timer_timeout():
 	pass
