@@ -9,12 +9,9 @@ class_name NPC
 @onready var sprite_2d = $Sprite2D
 @onready var bubble_dog = $BubbleDog
 @onready var hearts = $Hearts
-@onready var start_position = global_position
 @onready var target_position = global_position
-@export var wander_range = 32
 @export var navigation_agent: NavigationAgent2D
 @export var navigation_timer: Timer
-@onready var wander_timer = $WanderTimer
 
 enum {
 	IDLE,
