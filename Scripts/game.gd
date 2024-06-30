@@ -7,7 +7,7 @@ const GAME_OVER_MENU = preload("res://Scenes/others/game_over_menu.tscn")
 @export var limit_up_left = Vector2(5,5)
 @export var limit_down_right = Vector2(1690,1125)
 @onready var cat = $Cat
-@onready var tile_map: TileMap = $TileMap
+@onready var tile_map: TileMap = $NavigationRegion2D/TileMap
 @onready var visible_timer = $CanvasLayer/Time
 @onready var cat_people_counter = $"CanvasLayer/Cat People Counter"
 @onready var game_timer = $"Game Timer"
@@ -25,10 +25,7 @@ func _ready():
 		var i = randi_range(0, npc_max_nbr)
 		var npc = NPC_SCENE.instantiate()
 		var npc_resource = NPCResource.new()
-		var img = Image.new()
-		var tex = ImageTexture.new()
-		img.load(sprites_path + json_as_dict[i])
-		npc_resource.texture = tex.create_from_image(img)
+		npc_resource.texture = load(sprites_path + json_as_dict[i])
 		var npc_position = get_random_position()
 		npc.npc_resource = npc_resource
 		npc.player = cat
@@ -50,7 +47,7 @@ func get_random_position():
 		final_position = Vector2(x_position, y_position)
 		var posible_position = tile_map.local_to_map(final_position)
 		#this gets if is a obstacle to re-roll
-		var tile = tile_map.get_cell_tile_data(1, posible_position)
+		var tile = tile_map.get_cell_tile_data(0, posible_position)
 		if tile == null:
 			recalculate = false
 		

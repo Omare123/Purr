@@ -6,6 +6,12 @@ class_name NPC
 @onready var sprite_2d = $Sprite2D
 @onready var bubble_dog = $BubbleDog
 @onready var hearts = $Hearts
+@onready var start_position = global_position
+@onready var target_position = global_position
+@export var wander_range = 32
+@export var navigation_agent: NavigationAgent2D
+@export var navigation_timer: Timer
+@onready var wander_timer = $WanderTimer
 
 enum {
 	IDLE,
@@ -42,29 +48,25 @@ func _physics_process(delta):
 func idle_state():
 	if getting_in_love:
 		return
-	
-	if direction != Vector2.ZERO:
-		state = WALK
-	else:
-		set_animation_conditions("parameters/conditions/idle")
+
+	set_animation_conditions("parameters/conditions/idle")
 	
 func move_state(delta):
 	if getting_in_love:
 		return
-	direction = position.direction_to(player.position).normalized()
+	direction = to_local(navigation_agent.get_next_path_position()).normalized()
 	velocity = direction * SPEED
-	if direction == Vector2.ZERO:
+	if direction.length() < 1:
 		state = IDLE
 	else:
-		velocity = direction * SPEED
 		update_blend_directions()
 		set_animation_conditions("parameters/conditions/is_walking")
-	move_and_collide(direction)
+		move_and_collide(direction)
 
 func chasing_state():
 	if getting_in_love:
 		return
-	direction = position.direction_to(player.position).normalized()
+	direction = to_local(navigation_agent.get_next_path_position()).normalized()
 	velocity = direction * SPEED
 	update_blend_directions()
 	set_animation_conditions("parameters/conditions/is_chasing")
@@ -94,6 +96,7 @@ func update_blend_directions():
 
 func get_in_love():
 	state = LOVE
+	navigation_timer.wait_time = 0.1
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "in_love":
@@ -107,3 +110,23 @@ func _on_petting_range_area_entered(area):
 	if area_body is Cat and state == CHASE and !area_body.untouchable:
 		area_body.getting_pet()
 		state = PET
+		
+func pick_random_state(state_list):
+	state_list.shuffle()
+	return state_list.pop_front()
+
+func _on_navigation_timer_timeout():
+	if state == CHASE:
+		navigation_agent.target_position = player.global_position
+	else:
+		update_target_position()
+		navigation_agent.target_position = target_position
+
+func update_target_position():
+	var target_vector = Vector2(randf_range(-wander_range, wander_range), randf_range(-wander_range, wander_range))
+	if state == IDLE:
+		state = WALK
+		target_position = start_position + target_vector
+
+func _on_wander_timer_timeout():
+	pass

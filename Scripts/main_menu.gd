@@ -1,6 +1,4 @@
 class_name MainMenu extends Control
-@onready var start_button = $MarginContainer/VBoxContainer/Start_Button
-@onready var quit_button = $MarginContainer/VBoxContainer/Quit_Button
 @onready var main_level = preload("res://Scenes/game.tscn")
 @onready var controls = $Controls
 @onready var main = $Main

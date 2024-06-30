@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_7kejs"]
 [ext_resource type="AudioStream" uid="uid://bal58cjw0lyrt" path="res://Assets/Music/Kitty-cat.mp3" id="2_eosfb"]
-[ext_resource type="PackedScene" uid="uid://byixow0rkgeta" path="res://Scenes/others/instructions.tscn" id="3_2ru2f"]
+[ext_resource type="PackedScene" path="res://Scenes/others/instructions.tscn" id="3_2ru2f"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
