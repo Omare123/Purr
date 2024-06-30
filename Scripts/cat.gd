@@ -80,13 +80,18 @@ func idle_state():
 		state = WALK
 
 func purr_state():
+	var got_someone = false
 	set_animation_conditions("parameters/conditions/is_purring")
 	for area in purr_range.get_overlapping_areas():
 		body = area.get_parent()
+		got_someone = true
 		if body is NPC and !body.getting_in_love and !body.in_love:
 			body.get_in_love()
 			loved_a_person = true
 			got_person_in_love.emit()
+	
+	if !got_someone:
+		state = WALK
 
 func pet_state():
 	set_animation_conditions("parameters/conditions/pet")

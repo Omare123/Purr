@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do8jhjrrdj2g0" path="res://Scenes/others/press_free_particle.tscn" id="5_adhdf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2g6f"]
-radius = 7.0
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chl0r"]
 radius = 4.0
@@ -242,19 +242,19 @@ collision_mask = 5
 script = ExtResource("1_1tmil")
 UNTOUCHABLE_TIME = 1.5
 animation_tree = NodePath("AnimationTree")
-purr_range = NodePath("Area2D")
+purr_range = NodePath("Purr Range")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0lcp1")
 hframes = 8
 vframes = 33
-frame = 6
+frame = 4
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Purr Range" type="Area2D" parent="."]
 position = Vector2(-1, -9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Purr Range"]
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_g2g6f")
 
