@@ -21,7 +21,7 @@ enum {
 	PET
 }
 
-const SPEED = 100.0
+var SPEED = 100.0
 var direction = Vector2.ZERO
 var getting_in_love = false
 var in_love = false
@@ -103,6 +103,7 @@ func update_blend_directions():
 
 func get_in_love():
 	state = LOVE
+	SPEED = 120
 	navigation_timer.stop()
 	navigation_timer.wait_time = 0.1
 	navigation_timer.start()

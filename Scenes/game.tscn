@@ -3118,7 +3118,7 @@ sources/1 = SubResource("TileSetAtlasSource_omnft")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7d40x")
-npc_to_add = 3
+npc_to_add = 20
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_cl3ur")

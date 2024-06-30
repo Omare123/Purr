@@ -63,7 +63,7 @@ func game_over():
 	#for child in get_children():
 		#if child is NPC:
 			#child.game_over_celebrate()
-	#add_child.call_deferred(game_over_screen)
+	add_child.call_deferred(game_over_screen)
 
 func _process(delta):
 	visible_timer.text = get_time()
