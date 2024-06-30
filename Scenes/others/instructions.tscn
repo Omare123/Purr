@@ -318,13 +318,15 @@ autoplay = "default"
 layout_mode = 0
 offset_left = 400.0
 offset_top = 424.0
-offset_right = 499.0
+offset_right = 553.0
 offset_bottom = 464.0
 
 [node name="Label" type="Label" parent="Free Container"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Get Free"
+text = "Get Released"
 
 [node name="Sprite2D" type="Sprite2D" parent="Free Container"]
 position = Vector2(48, 56)

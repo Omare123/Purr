@@ -434,6 +434,7 @@ bus = &"SFX"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
+debug_enabled = true
 
 [node name="NavigationTimer" type="Timer" parent="."]
 autostart = true
