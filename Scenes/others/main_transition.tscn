@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfob05nfd6dbv"]
+
+[ext_resource type="Script" path="res://Scripts/main_transition.gd" id="1_yo1h3"]
+[ext_resource type="AudioStream" uid="uid://b0n0iugx7v3gd" path="res://Assets/Music/shine-magic-sound-4-sounds-2.mp3" id="2_gxcqx"]
+
+[sub_resource type="Animation" id="Animation_nm8qh"]
+resource_name = "transition"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.517647, 0.776471, 0.411765, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ddkkm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87df5"]
+_data = {
+"RESET": SubResource("Animation_ddkkm"),
+"transition": SubResource("Animation_nm8qh")
+}
+
+[node name="Main Transition" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_yo1h3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.537258, 0.799857, 0.430207, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_87df5")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gxcqx")
+bus = &"Music"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

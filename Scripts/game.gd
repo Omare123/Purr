@@ -18,6 +18,8 @@ const NPC_NAMES = "res://Resources/npc_sprite_names.json"
 const npc_max_nbr = 7
 var counter = 0
 func _ready():
+	cat_people_counter.text = str(npc_to_add)
+	counter = npc_to_add
 	var json_as_text = FileAccess.get_file_as_string(NPC_NAMES)
 	var json_as_dict = JSON.parse_string(json_as_text)["data"]
 	for n in npc_to_add:
@@ -68,9 +70,9 @@ func get_time():
 	return "%02d:%02d" % [minutes, seconds]
 
 func _on_cat_got_person_in_love():
-	counter += 1
+	counter -= 1
 	cat_people_counter.text = str(counter)
-	if counter == npc_to_add:
+	if counter == 0:
 		game_over()
 
 func _on_game_timer_timeout():

@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/others/background.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MainMusic="*res://Scenes/others/main_music.tscn"
+MainTransition="*res://Scenes/others/main_transition.tscn"
+
 [display]
 
 window/stretch/mode="viewport"
